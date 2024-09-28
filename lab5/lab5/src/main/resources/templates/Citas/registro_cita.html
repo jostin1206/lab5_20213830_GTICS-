@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+          crossorigin="anonymous">
+    <title>Registro cita</title>
+</head>
+<body>
+<main>
+    <div th:insert="~{fragments/header :: head}"></div>
+    <div class="container px-4 py-5">
+
+
+        <h1 class="pb-2 mb-3 border-bottom">Nueva Cita</h1>
+        <div class="alert alert-success" role="alert" th:if="${msg != null}" th:text="${msg}">
+            A simple success alert—check it out!
+        </div>
+        <div class="alert alert-danger" role="alert" th:if="${error != null}" th:text="${error}">
+            A simple success alert—check it out!
+        </div>
+
+        <form method="post" th:action="@{'/cita/guardar'}" class="mt-2" th:object="${citas}">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre y apellido</label>
+                <input name="paciente.nombre" type="text" class="form-control" id="nombre">
+            </div>
+            <div class="mb-3">
+                <label for="dni" class="form-label">DNI</label>
+                <input name="paciente.dni" type="text" class="form-control" id="dni">
+            </div>
+            <div class="mb-3">
+                <label for="edad" class="form-label">Edad</label>
+                <input name="paciente.edad" type="number" class="form-control" id="edad">
+            </div>
+            <div class="mb-3">
+                <label for="motivo" class="form-label">Motivo de consulta</label>
+                <input name="motivo" type="text" class="form-control" id="motivo">
+            </div>
+
+            <div class="mb-3">
+                <label for="areas" class="form-label">Área</label>
+                <select class="form-select" name="areas" id="areas">
+                    <option th:each="area: ${listaAreas}"
+                            th:text="${area.nombreAreas}" th:value="${area.idAreas}">Open this select menu</option>
+                </select>
+            </div>
+            <!--
+            <div class="mb-3">
+                <label for="area" class="form-label">Área de Consulta</label>
+                <select class="form-select" id="area" th:field="*{listaAreas}" required>
+                    <option th:each="area : ${listaAreas}" th:value="${area.idAreas}" th:text="${area.nombreAreas}">Seleccione un área</option>
+                </select>
+            </div> -->
+<!--
+            <div class="mb-3">
+                <label for="profesionales" class="form-label">Nombre de Profesional</label>
+                <select class="form-select" id="profesionales" th:field="*{listaProfesionales}" required>
+                    <option th:each="profesional : ${listaProfesionales}" th:value="${profesional}" th:text="${profesional.nombreProfesional}">Seleccione un profesional</option>
+                </select>
+            </div>
+            -->
+            <!--
+            <div class="mb-3">
+                <label for="profesionales" class="form-label">Nombre de Profesional</label>
+                <select class="form-select" id="profesionales" th:field="*{profesionales}" required>
+                    <option value="" disabled selected>Seleccione un profesional</option>
+                    <option th:each="profesional : ${listaProfesionales}"
+                            th:value="${profesional.idProfesional}"
+                            th:text="${profesional.nombreProfesional}">
+                    </option>
+                </select>
+            </div>-->
+
+            <div class="mb-3">
+                <label for="profesionales" class="form-label">Profesionales</label>
+                <select class="form-select" name="profesionales" id="profesionales">
+                    <option th:each="profesionales: ${listaProfesionales}"
+                            th:text="${profesionales.nombreProfesional}" th:value="${profesionales.idProfesional}">Open this select menu</option>
+                </select>
+            </div>
+<!--
+            <div class="mb-3">
+                <label for="sede" class="form-label">Sede: </label>
+                <select class="form-select" name="sede" id="sede">
+                    <option th:each="sede: ${listaSedes}"
+                            th:text="${sede.nombre}" th:value="${sede.id}">Open this select menu</option>
+                </select>
+            </div> -->
+
+<!--
+            <div class="mb-3">
+                <label for="sede" class="form-label">Sede de Atención</label>
+                <select class="form-select" id="sede" th:field="${listaSedes}" required>
+                    <option th:each="sede : ${listaSedes}" th:value="${sede.id}" th:text="${sede.nombre}">Seleccione una sede</option>
+                </select>
+            </div>-->
+
+            <div class="mb-3">
+                <label class="form-label">Sede: </label> <!-- No es necesario usar for -->
+                <select class="form-select" th:field="*{sedes}" required>
+                    <option value="" disabled selected>Seleccione una sede</option>
+                    <option th:each="sede : ${listaSedes}" th:value="${sede.id}" th:text="${sede.nombre}"></option>
+                </select>
+            </div>
+<!--
+            <div class="mb-3">
+                <label for="fechaConsulta" class="form-label">Fecha de Consulta</label>
+                <select class="form-select" id="fechaConsulta" th:field="*{listaFechas}" required>
+                    <option th:each="fecha : ${listaFechas}" th:value="${fecha.id}" th:text="${fecha.fechaDisponibilidad}">Seleccione una fecha</option>
+                </select>
+            </div>-->
+
+            <div class="mb-3">
+                <label  class="form-label">Fecha de Consulta</label>
+                <select class="form-select"  th:field="*{fechas}" required>
+                    <option th:each="fecha : ${listaFechas}" th:value="${fecha.id}" th:text="${fecha.fechaDisponibilidad}">Seleccione una fecha</option>
+                </select>
+            </div>
+
+            <!--
+            <div class="mb-3">
+                <label for="fechaConsulta" class="form-label">Fecha de Consulta: </label>
+                <select class="form-select" name="fechaConsulta" id="fechaConsulta">
+                    <option th:each="fecha: ${listaFechas}"
+                            th:text="${fecha.fechaDisponibilidad}" th:value="${fecha.id}">Open this select menu</option>
+                </select>
+            </div>-->
+
+            <!--
+            <div class="mb-3">
+                <label for="riesgo" class="form-label">Riesgo</label>
+                <select class="form-select" id="riesgo" th:field="*{listaRiesgos}" required>
+                    <option th:each="riesgo : ${listaRiesgos}" th:value="${riesgo.idRiesgos}" th:text="${riesgo.nombreRiesgo}">Seleccione un riesgo</option>
+                </select>
+            </div> -->
+<!--
+            <div class="mb-3">
+                <label for="riesgos" class="form-label">Riesgo: </label>
+                <select class="form-select" name="paciente.riesgos.idRiesgos" id="riesgos">
+                    <option th:each="riesgo: ${listaRiesgos}"
+                            th:text="${riesgo.nombreRiesgo}" th:value="${riesgo.idRiesgos}">Open this select menu</option>
+                </select>
+            </div>-->
+            <!--
+            <div class="mb-3">
+                <label for="riesgos" class="form-label">Riesgo: </label>
+                <select class="form-select" name="riesgos.idRiesgos" id="riesgos" required>
+                    <option value="" disabled selected>Seleccione un riesgo</option>
+                    <option th:each="riesgo: ${listaRiesgos}"
+                            th:value="${riesgo.idRiesgos}" th:text="${riesgo.nombreRiesgo}"></option>
+                </select>
+            </div>-->
+            <div class="mb-3">
+                <label  class="form-label">Riesgo:</label>
+                <select class="form-select"  th:field="*{riesgos.idRiesgos}" required>
+                    <option th:each="riesgos : ${listaRiesgos}" th:value="${riesgos.idRiesgos}" th:text="${riesgos.nombreRiesgo}">Seleccione un riesgo</option>
+                </select>
+            </div>
+
+
+            <a th:href="@{'/profesionales/lista'}" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Reservar cita</button>
+        </form>
+    </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+</body>
+</html>
