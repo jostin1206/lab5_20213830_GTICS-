@@ -38,6 +38,15 @@ public class CitasController {
         this.pacienteRepository = pacienteRepository;
     }
 
+    @GetMapping(value = {"/citas/lista", "/"})
+    public String listaCitas(Model model) {
+        model.addAttribute("listaCitas", citasRepository.findAll());
+        model.addAttribute("citasArea", citasRepository.obtenerCitasPorArea());
+        model.addAttribute("citasProfesional", citasRepository.obtenerCitasPorProfesional());
+        model.addAttribute("citasSede", citasRepository.obtenerCitasPorSede());
+
+        return "Citas/lista_cita";
+    }
     @GetMapping("/cita/nuevo")
     public String nuevaCita(Model model) {
         //model.addAttribute("citas", new Citas());

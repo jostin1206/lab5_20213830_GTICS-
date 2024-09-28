@@ -36,4 +36,9 @@ public class Citas {
     @ManyToOne
     @JoinColumn(name = "idFechaConsulta")
     private Fechas fechas;
+
+
+    @Column(name = "precio")
+    private Double precio;
+
 }

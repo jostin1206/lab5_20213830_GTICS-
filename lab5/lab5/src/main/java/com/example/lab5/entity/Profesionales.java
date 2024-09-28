@@ -36,4 +36,5 @@ public class Profesionales {
     // Relación con fechas disponibles, se investigó de ello :v
     @OneToMany(mappedBy = "profesionales", cascade = CascadeType.ALL)
     private List<Fechas> fechasDisponibles;
+
 }

@@ -15,4 +15,5 @@ public class Areas {
     private int idAreas;
     @Column(name="nombreArea")
     private String nombreAreas;
+
 }
