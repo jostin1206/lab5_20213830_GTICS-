@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="Sedes")
+@Table(name="sedes")
 public class Sedes {
 
     @Id
@@ -16,5 +16,5 @@ public class Sedes {
     private int id;
 
     @Column(name="nombreSede")
-    private int nombre;
+    private String nombre;
 }

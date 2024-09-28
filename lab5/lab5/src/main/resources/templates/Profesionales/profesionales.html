@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+          crossorigin="anonymous">
+    <title>Profesionales</title>
+</head>
+<body>
+    <!-- Incluir el header -->
+    <div th:insert="~{fragments/header :: head}"></div>
+
+    <!-- Contenido específico de la página de Profesionales -->
+    <div class="container">
+        <h2 class="text-center my-4">Profesionales</h2>
+        <a class="btn btn-primary" th:href="@{'/cita/nuevo'}">Registrar Cita</a>
+        <div class="alert alert-success" role="alert" th:if="${msg != null}" th:text="${msg}">
+            A simple success alert—check it out!
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+
+            <div class="col" th:each="profesionales : ${listaProfesionales}">
+                <div class="card h-100">
+
+                    <img th:src="@{'/imagenes/' + ${profesionales.imagen}}" class="card-img-top" alt="Imagen del profesional">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${profesionales.nombreProfesional}">Nombre</h5>
+                        <p class="card-text" th:text="${profesionales.areas.nombreAreas}">Descripcion</p>
+                        <p class="card-text" th:text="${profesionales.descripcion}">Descripción</p>
+                        <p class="card-text" th:text="${profesionales.sedes.nombre}">Sede</p>
+                        <!--<p class="card-text"><strong>Precio: </strong><span th:text="${flores.precio}"></span></p> -->
+                        <p class="card-text"><strong>Fechas Disponibles:</strong></p>
+                        <ul>
+                            <li th:each="fecha : ${profesionales.fechasDisponibles}" th:text="${fecha.fechaDisponibilidad}"></li>
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+            crossorigin="anonymous"></script>
+</body>
+</html>
