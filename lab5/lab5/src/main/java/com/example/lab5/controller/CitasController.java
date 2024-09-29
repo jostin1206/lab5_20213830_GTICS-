@@ -38,7 +38,7 @@ public class CitasController {
         this.pacienteRepository = pacienteRepository;
     }
 
-    @GetMapping(value = {"/citas/lista", "/"})
+    @GetMapping(value = {"/citas/lista"})
     public String listaCitas(Model model) {
         model.addAttribute("listaCitas", citasRepository.findAll());
         model.addAttribute("citasArea", citasRepository.obtenerCitasPorArea());

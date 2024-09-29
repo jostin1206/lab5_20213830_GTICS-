@@ -16,7 +16,7 @@ public class ProfesionalController {
     }
 
 
-    @GetMapping(value = {"/profesionales/lista", "/"})
+    @GetMapping(value = {"/profesionales/lista"})
     public String listaProfesionales(Model model) {
         model.addAttribute("listaProfesionales", profesionalRepository.findAll());
         return "Profesionales/profesionales";

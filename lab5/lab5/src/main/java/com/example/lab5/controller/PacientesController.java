@@ -22,7 +22,7 @@ public class PacientesController {
         this.citasRepository = citasRepository;
     }
 
-    @GetMapping(value = {"/pacientes/lista", "/"})
+    @GetMapping(value = {"/pacientes/lista"})
     public String listaPacientes(Model model) {
         model.addAttribute("listaPacientes", pacienteRepository.findAll());
         model.addAttribute("listaRiesgos", riesgoRepository.findAll());
