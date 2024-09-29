@@ -65,7 +65,7 @@ INSERT INTO fechas(idFechas, fechaDisponibilidad, idProfesional) VALUES (23, '20
 
 
 -- Para casa
-INSERT INTO pacientes(nombrePaciente, DNI, Edad, riesgos_idRiesgos) VALUES (1,"Carlos Vargas" , "12346767", 23,1);
+INSERT INTO pacientes(nombrePaciente, DNI, Edad, riesgos_idRiesgos) VALUES ("Carlos Vargas" , "12346767", 23,1);
 INSERT INTO pacientes(nombrePaciente, DNI, Edad, riesgos_idRiesgos) VALUES ("Luis Pinedo" , "12346778", 32,2);
 INSERT INTO pacientes(nombrePaciente, DNI, Edad, riesgos_idRiesgos) VALUES ("Liz Vela" , "12346789", 26,3);
 INSERT INTO pacientes(nombrePaciente, DNI, Edad, riesgos_idRiesgos) VALUES ("Angela Salazar" , "12346790", 45,4);
